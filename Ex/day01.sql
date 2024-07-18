@@ -4,7 +4,6 @@ select 문(조회)
 
 -- **select ~ from 절 (테이블이름)
 -- 테이블 전체 조회하기
-
 select * from employees;
 select * from departments;
 select * from locations;
@@ -12,7 +11,7 @@ select * from countries;
 select * from regions;
 select * from jobs;
 select * from job_history;
-select * from JOB_HISTORY;
+select * from JOB_HISTORY;  -- 대소문자 구분이 없다
 SELECT * FrOM joB_hIstOrY;
 
 -- 원하는 컬럼만 조회하기
