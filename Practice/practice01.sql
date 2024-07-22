@@ -131,12 +131,8 @@ order by country_name asc;
 
 select first_name
 		, salary
-        , concat_ws(phone_number, '-')
+        , replace(phone_number, '.', '-')
         , hire_date
-from employees;
-where hire_date <= 03/12/31;
-
-
-
-
+from employees
+where hire_date <= 031231;
 
