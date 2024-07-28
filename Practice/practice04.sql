@@ -70,7 +70,17 @@ order by salary asc;
 주(state_province), 나라아이디(country_id) 를 출력하세요  (1건)
 */
 
--- ------------------------------------
+select  l.location_id,
+		l.street_address,
+        l.postal_code,
+        l.city,
+        l.state_province,
+        l.country_id
+from locations l, departments d, employees e
+where l.location_id = d.location_id
+and d.manager_id = e.employee_id
+and e.first_name = 'steven'
+and e.last_name = 'king';
 
 
 /*
@@ -153,3 +163,41 @@ order by salary desc;
 월급 총합이 가장 높은 업무부터 업무명(job_title)과 월급 총합을 조회하시오  (19건)
 */
 
+select j.job_title 업무명
+		, sum(e.salary) 월급총합
+from employees e, jobs j
+where e.job_id =j.job_id
+group by job_title
+order by sum(e.salary) desc;
+
+
+/*
+문제7.
+자신의 부서 평균 월급보다 월급(salary)이 많은 직원의 직원번호(employee_id), 이름(first_name)과 월급(salary)을 조회하세요
+(38건)
+*/
+select e.employee_id
+	 , e.first_name 
+     , e.salary 
+from employees e,(select department_id
+						, avg(salary) aSalary 
+				  from employees 
+                  group by department_id) d
+where e.department_id = d.department_id
+and e.salary > d.aSalary;         
+
+
+/*
+문제8.
+직원 입사일이 11번째에서 15번째의 직원의 사번, 이름, 월급, 입사일을 입사일 순서로 출력하세요       
+*/
+select employee_id
+	 , first_name 
+     , salary 
+     , hire_date 
+from employees
+order by hire_date
+limit 10,5;
+
+
+---------------------------------------------------------------------------
